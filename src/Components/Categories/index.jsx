@@ -1,9 +1,15 @@
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux';
+import { setSelectedCategory } from '../../../src/store/categories';
 
 function Categories() {
+  const dispatch = useDispatch();
+
+  const handleTabChange = (event, newValue) => {
+    dispatch(setSelectedCategory(newValue));
+  };
   return (
     <>
       <Box
@@ -16,6 +22,7 @@ function Categories() {
       >
         <Tabs
           variant="scrollable"
+          onChange={handleTabChange}
           aria-label="Vertical tabs example"
           sx={{
             borderRight: 1,
