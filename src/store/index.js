@@ -2,7 +2,11 @@
 import { createStore, combineReducers } from 'redux';
 
 import categoryReducer from '../store/categories';
+import productReducer from '../store/products';
 
-let reducer = combineReducers({ categories: categoryReducer });
+const reducer = combineReducers({
+  categories: categoryReducer,
+  products: productReducer,
+});
 
 export default createStore(reducer);
