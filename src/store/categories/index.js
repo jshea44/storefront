@@ -1,28 +1,42 @@
-'use strict';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  selectedCategory: 'Item One',
-};
+const categories = createSlice({
+  name: 'categories',
+  initialState: {
+    list: [
+      {
+        name: 'ALL',
+        displayName: 'All',
+      },
+      {
+        name: 'SHIRTS',
+        displayName: 'Shirts',
+        description: 'Cool Shirts!',
+      },
+      {
+        name: 'PANTS',
+        displayName: 'Pants',
+        description: 'Cool Pants!',
+      },
+      {
+        name: 'SHOES',
+        displayName: 'Shoes',
+        description: 'Cool Shoes!',
+      },
+    ],
+    activeCategory: {
+      name: 'ALL',
+      displayName: 'All',
+    },
+  },
+  reducers: {
+    selectCategory: (state, action) => {
+      console.log(action);
+      state.activeCategory = action.payload;
+    },
+  },
+});
 
-const reducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case 'SET_SELECTED_CATEGORY':
-      return {
-        ...state,
-        selectedCategory: payload,
-      };
-    default:
-      return state;
-  }
-};
+export const { selectCategory } = categories.actions;
 
-// action
-export const setSelectedCategory = (category) => {
-  return {
-    type: 'SET_SELECTED_CATEGORY',
-    payload: category,
-  };
-};
-
-export default reducer;
+export default categories.reducer;

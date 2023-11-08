@@ -2,14 +2,36 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useDispatch } from 'react-redux';
-import { setSelectedCategory } from '../../../src/store/categories';
+import { selectCategory } from '../../../src/store/categories';
 
 function Categories() {
   const dispatch = useDispatch();
 
   const handleTabChange = (event, newValue) => {
-    dispatch(setSelectedCategory(newValue));
+    dispatch(selectCategory(newValue));
   };
+
+  const categories = [
+    {
+      name: 'ALL',
+      displayName: 'All',
+    },
+    {
+      name: 'SHIRTS',
+      displayName: 'Shirts',
+      description: 'Cool Shirts!',
+    },
+    {
+      name: 'PANTS',
+      displayName: 'Pants',
+      description: 'Cool Pants!',
+    },
+    {
+      name: 'SHOES',
+      displayName: 'Shoes',
+      description: 'Cool Shoes!',
+    },
+  ];
   return (
     <>
       <Box
@@ -31,13 +53,9 @@ function Categories() {
             left: 0,
           }}
         >
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
-          <Tab label="Item Four" />
-          <Tab label="Item Five" />
-          <Tab label="Item Six" />
-          <Tab label="Item Seven" />
+          {categories.map((category, idx) => (
+            <Tab key={idx} label={category.displayName} />
+          ))}
         </Tabs>
       </Box>
     </>
